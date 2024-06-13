@@ -15,7 +15,7 @@ describe('parquetReadIndices', () => {
     const metadata = await parquetMetadataAsync(file)
     const columnNameIndex = metadata.schema.findIndex(el => el.name === columnName) - 1
 
-    // determine which rowgroup and column contains our data
+    // find the row group and column containing values that fulfill the predicate
     const groupIndex = metadata.row_groups
       .map(group => group.columns[columnNameIndex].meta_data?.statistics)
       .findIndex(g => predicate(g?.min_value, g?.max_value))
@@ -36,24 +36,22 @@ describe('parquetReadIndices', () => {
     const offsetIndexReader = { view: new DataView(offsetIndexArrayBuffer), offset: 0 }
     const offsetIndex = readOffsetIndex(offsetIndexReader)
 
-    // find the index of the first page that contains values intersecting the range
-    const columnPageIndex = columnIndex.min_values.findIndex((_, i) => predicate(columnIndex.min_values[i], columnIndex.max_values[i]))
-
-    // find out where the page is, based on the offset index
-    const columnPageLocation = offsetIndex.page_locations[columnPageIndex]
-    const columnPageOffset = Number(columnPageLocation.offset)
-    const columnPageLength = Number(columnPageLocation.compressed_page_size)
+    // find the location of the first page containing values that fulfill the predicate
+    const pageIndex = columnIndex.min_values.findIndex((_, i) => predicate(columnIndex.min_values[i], columnIndex.max_values[i]))
+    const pageLocation = offsetIndex.page_locations[pageIndex]
 
     // set up a dataview containing the page data
-    const pageArrayBuffer = await file.slice(columnPageOffset, columnPageOffset + columnPageLength)
+    const pageOffset = Number(pageLocation.offset)
+    const pageLength = Number(pageLocation.compressed_page_size)
+    const pageArrayBuffer = await file.slice(pageOffset, pageOffset + pageLength)
     const pageReader = { view: new DataView(pageArrayBuffer), offset: 0 }
 
     // retrieve page data using readColumn - set rowLimit to 1 to read only the first page
     const schemaPath = getSchemaPath(metadata.schema, column.meta_data?.path_in_schema)
-    const columnData = readColumn(pageReader, 1, column.meta_data, schemaPath, {})
+    const pageData = readColumn(pageReader, 1, column.meta_data, schemaPath, {})
 
-    // expect the page data to contain values within the specified range
-    const filteredColumnData = columnData.filter(x => predicate(x, x))
-    expect(filteredColumnData.length).toBeGreaterThan(0)
+    // expect the page data to contain values that fulfill the predicate
+    const filteredPageData = pageData.filter(x => predicate(x, x))
+    expect(filteredPageData.length).toBeGreaterThan(0)
   })
 })
