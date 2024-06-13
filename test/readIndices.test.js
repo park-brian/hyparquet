@@ -37,8 +37,7 @@ describe('parquetReadIndices', () => {
     const offsetIndex = readOffsetIndex(offsetIndexReader)
 
     // find the location of the first page containing values that fulfill the predicate
-    const pageIndex = columnIndex.min_values.findIndex((_, i) => predicate(columnIndex.min_values[i], columnIndex.max_values[i]))
-    const pageLocation = offsetIndex.page_locations[pageIndex]
+    const pageLocation = offsetIndex.page_locations.find((_, i) => predicate(columnIndex.min_values[i], columnIndex.max_values[i]))
 
     // set up a dataview containing the page data
     const pageOffset = Number(pageLocation.offset)
