@@ -27,7 +27,7 @@ describe('parquetReadIndices', () => {
     const columnIndexLength = Number(column.column_index_length)
     const columnIndexArrayBuffer = await file.slice(columnIndexOffset, columnIndexOffset + columnIndexLength)
     const columnIndexReader = { view: new DataView(columnIndexArrayBuffer), offset: 0 }
-    const columnIndex = readColumnIndex(columnIndexReader, column.meta_data)
+    const columnIndex = readColumnIndex(columnIndexReader, metadata.schema[columnNameIndex + 1])
 
     // read the offset index
     const offsetIndexOffset = Number(column.offset_index_offset)
