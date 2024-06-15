@@ -1,4 +1,5 @@
 import fs from 'fs'
+
 /**
  * Helper function to read .parquet file into ArrayBuffer
  *
@@ -60,11 +61,59 @@ export function largeFileToAsyncBuffer(filePath) {
   }
 }
 
+/**
+ * Wraps a remote file in an AsyncBuffer
+ * @param {string} url 
+ * @returns {Promise<import('../src/types.js').AsyncBuffer>} 
+ */
+export async function remoteFileToAsyncBuffer(url) {
+  return {
+    byteLength: await getLength(url),
+    slice: async (start, end) => {
+      return await getBytes(url, start, end)
+    },
+    sliceBatch: async (ranges) => {
+      const requests = chunk(ranges, 100).map(ranges => getBytesFromRanges(url, ranges))
+      const results = await Promise.all(requests)
+      return results.flat()
+    },
+  }
+}
+
+/**
+ * Chunks an array into smaller arrays of the specified size.
+ * 
+ * @param {any[]} list 
+ * @param {number} size 
+ * @returns {any[][]}  
+ */
+function chunk(list, size) {
+  return Array.from({ length: Math.ceil(list.length / size) }, (_, i) =>
+    list.slice(i * size, i * size + size)
+  )
+}
+
+/**
+ * Returns the length of a remote file
+ * 
+ * @param {string} url 
+ * @returns 
+ */
 export async function getLength(url) {
   const response = await fetch(url, { method: 'HEAD', cache: 'no-store' })
   return parseInt(response.headers.get('Content-Length'))
 }
 
+
+/**
+ * Fetches a range of bytes from a remote file
+ * 
+ * 
+ * @param {url} url 
+ * @param {number} start 
+ * @param {number} end 
+ * @returns {Promise<ArrayBuffer>}
+ */
 export async function getBytes(url, start, end) {
   const response = await fetch(url, {
     headers: { Range: `bytes=${start}-${end - 1}` },
@@ -73,34 +122,14 @@ export async function getBytes(url, start, end) {
   return await response.arrayBuffer()
 }
 
-export async function remoteFileToAsyncBuffer(url) {
-  return {
-    byteLength: await getLength(url),
-    slice: async (start, end) => {
-      return await getBytes(url, start, end)
-    },
-    sliceBatch: async (ranges) => {
-      const requests = chunk(ranges, 100).map(ranges => fetchBatchedRanges(url, ranges))
-      const results = await Promise.all(requests)
-      return results.flat()
-    },
-  }
-}
-
-function chunk(list, size) {
-  return Array.from({ length: Math.ceil(list.length / size) }, (_, i) =>
-    list.slice(i * size, i * size + size)
-  )
-}
-
 /**
- * Returns an ArrayBuffers from a multirange request
+ * Returns an ArrayBuffer[] from a multirange request
  *
  * @param {string} url
  * @param {(null | [number, number])[]} ranges
  * @returns {Promise<ArrayBuffer[]>}
  */
-export async function fetchBatchedRanges(url, ranges) {
+export async function getBytesFromRanges(url, ranges) {
   const arrayBuffers = new Array(ranges.length).fill(null).map(_ => new ArrayBuffer(0))
   if (!ranges.filter(Boolean).length) return arrayBuffers
 
@@ -171,6 +200,12 @@ export function reader(bytes) {
 }
 
 
+/**
+ * Concatenate array buffers into a single buffer.
+ * 
+ * @param {ArrayBuffer[]} buffers 
+ * @returns {ArrayBuffer}
+ */
 export function concatenateArrayBuffers(buffers) {
   const bufferLength = buffers.reduce((acc, buffer) => acc + buffer.byteLength, 0)
   const buffer = new ArrayBuffer(bufferLength)
@@ -183,6 +218,13 @@ export function concatenateArrayBuffers(buffers) {
   return buffer
 }
 
+/**
+ * Groups an array by a predicate function, returning an object with keys as the predicate result.
+ * 
+ * @param {any[]} array 
+ * @param {(item: any) => string} predicate 
+ * @returns {Record<string, any[]>}
+ */
 export function groupBy(array, predicate) {
   return array.reduce((acc, el) => {
     const key = predicate(el)
