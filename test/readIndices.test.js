@@ -3,7 +3,7 @@ import { readColumn } from '../src/column.js'
 import { parquetMetadataAsync } from '../src/hyparquet.js'
 import { readColumnIndex, readOffsetIndex } from '../src/indicies.js'
 import { getSchemaPath } from '../src/schema.js'
-import { fileToAsyncBuffer, largeFileToAsyncBuffer, remoteFileToAsyncBuffer, groupBy, concatenateArrayBuffers } from './helpers.js'
+import { concatenateArrayBuffers, fileToAsyncBuffer, groupBy, largeFileToAsyncBuffer, remoteFileToAsyncBuffer } from './helpers.js'
 
 describe('parquetReadIndices', () => {
   it('retrieves column index data and reads a single page', async () => {

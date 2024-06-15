@@ -63,8 +63,8 @@ export function largeFileToAsyncBuffer(filePath) {
 
 /**
  * Wraps a remote file in an AsyncBuffer
- * @param {string} url 
- * @returns {Promise<import('../src/types.js').AsyncBuffer>} 
+ * @param {string} url
+ * @returns {Promise<import('../src/types.js').AsyncBuffer>}
  */
 export async function remoteFileToAsyncBuffer(url) {
   return {
@@ -82,10 +82,10 @@ export async function remoteFileToAsyncBuffer(url) {
 
 /**
  * Chunks an array into smaller arrays of the specified size.
- * 
- * @param {any[]} list 
- * @param {number} size 
- * @returns {any[][]}  
+ *
+ * @param {any[]} list
+ * @param {number} size
+ * @returns {any[][]}
  */
 function chunk(list, size) {
   return Array.from({ length: Math.ceil(list.length / size) }, (_, i) =>
@@ -95,9 +95,9 @@ function chunk(list, size) {
 
 /**
  * Returns the length of a remote file
- * 
- * @param {string} url 
- * @returns 
+ *
+ * @param {string} url
+ * @returns {Promise<number>}
  */
 export async function getLength(url) {
   const response = await fetch(url, { method: 'HEAD', cache: 'no-store' })
@@ -107,11 +107,11 @@ export async function getLength(url) {
 
 /**
  * Fetches a range of bytes from a remote file
- * 
- * 
- * @param {url} url 
- * @param {number} start 
- * @param {number} end 
+ *
+ *
+ * @param {url} url
+ * @param {number} start
+ * @param {number} end
  * @returns {Promise<ArrayBuffer>}
  */
 export async function getBytes(url, start, end) {
@@ -135,8 +135,11 @@ export async function getBytesFromRanges(url, ranges) {
 
   const headers = { range: 'bytes=' + ranges.filter(Boolean).map(([start, end]) => [start, end - 1].join('-')).join(',') }
   const getRangeIndex = (ranges, contentRange) => {
-    const [_, start, end] = contentRange?.match(/bytes (\d+)-(\d+)\/(\d+)/)
-    return ranges.findIndex(r => r && r[0] === parseInt(start) && r[1] === parseInt(end) + 1)
+    const matches = contentRange?.match(/bytes (\d+)-(\d+)\/(\d+)/)
+    if (!matches) return -1
+    const start = parseInt(matches[1])
+    const end = 1 + parseInt(matches[2])
+    return ranges.findIndex(r => r && r[0] === start && r[1] === end)
   }
 
   const response = await fetch(url, { headers, cache: 'no-store' })
@@ -202,8 +205,8 @@ export function reader(bytes) {
 
 /**
  * Concatenate array buffers into a single buffer.
- * 
- * @param {ArrayBuffer[]} buffers 
+ *
+ * @param {ArrayBuffer[]} buffers
  * @returns {ArrayBuffer}
  */
 export function concatenateArrayBuffers(buffers) {
@@ -220,9 +223,9 @@ export function concatenateArrayBuffers(buffers) {
 
 /**
  * Groups an array by a predicate function, returning an object with keys as the predicate result.
- * 
- * @param {any[]} array 
- * @param {(item: any) => string} predicate 
+ *
+ * @param {any[]} array
+ * @param {(item: any) => string} predicate
  * @returns {Record<string, any[]>}
  */
 export function groupBy(array, predicate) {
