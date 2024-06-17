@@ -59,8 +59,8 @@ describe('parquetReadIndices', () => {
 
   it('performs page-level predicate pushdown and retrieves data from adjacent columns', async () => {
     // given 'page_indices.parquet' we want to find the first page in the id column that has values between 250 and 300 (inclusive)
-    const file = largeFileToAsyncBuffer('test/files/page_indices.parquet')
-    // const file = await remoteFileToAsyncBuffer('http://localhost:8082/dbsnp.v14.parquet') // uncomment to test with large file
+    // const file = largeFileToAsyncBuffer('test/files/page_indices.parquet')
+    const file = await remoteFileToAsyncBuffer('http://localhost:8082/dbsnp.v14.parquet') // uncomment to test with large file
 
     // define columns to read
     const columns = ['id', 'chromosome', 'position_grch37', 'position_grch38', 'function', 'type']
