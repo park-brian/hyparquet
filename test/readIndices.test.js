@@ -29,7 +29,9 @@ describe('parquetReadIndices', () => {
     const columnIndexLength = Number(column.column_index_length)
     const columnIndexArrayBuffer = await file.slice(columnIndexOffset, columnIndexOffset + columnIndexLength)
     const columnIndexReader = { view: new DataView(columnIndexArrayBuffer), offset: 0 }
-    const columnIndex = readColumnIndex(columnIndexReader, metadata.schema[columnNameIndex + 1])
+    const schemaPath = getSchemaPath(metadata.schema, column.meta_data?.path_in_schema)
+    const schema = schemaPath.at(-1)?.element || { name: '' }
+    const columnIndex = readColumnIndex(columnIndexReader, schema)
 
     // read the offset index
     const offsetIndexOffset = Number(column.offset_index_offset)
@@ -48,7 +50,6 @@ describe('parquetReadIndices', () => {
     const pageReader = { view: new DataView(pageArrayBuffer), offset: 0 }
 
     // retrieve page data using readColumn - set rowLimit to 1 to read only the first page
-    const schemaPath = getSchemaPath(metadata.schema, column.meta_data?.path_in_schema)
     const pageData = readColumn(pageReader, 1, column.meta_data, schemaPath, {})
 
     // expect the page data to contain values that fulfill the predicate
@@ -114,7 +115,11 @@ describe('parquetReadIndices', () => {
     const columnPageData = indexLocations.map((location, i) => {
       const columnIndexReader = { view: new DataView(columnIndexData[i]), offset: 0 }
       const offsetIndexReader = { view: new DataView(offsetIndexData[i]), offset: 0 }
-      const columnIndex = readColumnIndex(columnIndexReader, metadata.schema[location.column + 1])
+      const column = metadata.row_groups[location.rowGroup].columns[location.column]
+      const schemaPath = getSchemaPath(metadata.schema, column.meta_data?.path_in_schema ?? [])
+      const schema = schemaPath.at(-1)?.element || { name: '' }
+
+      const columnIndex = readColumnIndex(columnIndexReader, schema)
       const offsetIndex = readOffsetIndex(offsetIndexReader)
 
       return offsetIndex.page_locations.map((pageLocation, j) => ({
