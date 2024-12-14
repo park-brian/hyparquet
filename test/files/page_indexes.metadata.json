@@ -1,0 +1,1785 @@
+{
+  "version": 1,
+  "schema": [
+    {
+      "name": "dbsnp",
+      "num_children": 7
+    },
+    {
+      "type": "INT32",
+      "repetition_type": "OPTIONAL",
+      "name": "id"
+    },
+    {
+      "type": "INT32",
+      "repetition_type": "OPTIONAL",
+      "name": "ref_id"
+    },
+    {
+      "type": "BYTE_ARRAY",
+      "repetition_type": "OPTIONAL",
+      "name": "chromosome",
+      "converted_type": "UTF8",
+      "logical_type": {
+        "type": "STRING"
+      }
+    },
+    {
+      "type": "INT64",
+      "repetition_type": "OPTIONAL",
+      "name": "position_grch37"
+    },
+    {
+      "type": "INT64",
+      "repetition_type": "OPTIONAL",
+      "name": "position_grch38"
+    },
+    {
+      "type": "BYTE_ARRAY",
+      "repetition_type": "OPTIONAL",
+      "name": "type",
+      "converted_type": "UTF8",
+      "logical_type": {
+        "type": "STRING"
+      }
+    },
+    {
+      "type": "BYTE_ARRAY",
+      "repetition_type": "OPTIONAL",
+      "name": "function",
+      "converted_type": "UTF8",
+      "logical_type": {
+        "type": "STRING"
+      }
+    }
+  ],
+  "num_rows": 500,
+  "row_groups": [
+    {
+      "columns": [
+        {
+          "file_offset": 4,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 46,
+            "total_compressed_size": 48,
+            "data_page_offset": 4,
+            "statistics": {
+              "max": 104,
+              "min": 3,
+              "null_count": 0,
+              "max_value": 104,
+              "min_value": 3
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7409,
+          "offset_index_length": 10,
+          "column_index_offset": 6255,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 52,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "ref_id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 46,
+            "total_compressed_size": 48,
+            "data_page_offset": 52,
+            "statistics": {
+              "max": 104,
+              "min": 3,
+              "null_count": 0,
+              "max_value": 104,
+              "min_value": 3
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7419,
+          "offset_index_length": 10,
+          "column_index_offset": 6287,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 132,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "chromosome"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 68,
+            "total_compressed_size": 72,
+            "data_page_offset": 132,
+            "dictionary_page_offset": 100,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "7",
+              "min_value": "13"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 102,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7429,
+          "offset_index_length": 15,
+          "column_index_offset": 6319,
+          "column_index_length": 27,
+          "crypto_metadata": 27
+        },
+        {
+          "file_offset": 172,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch37"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 486,
+            "total_compressed_size": 419,
+            "data_page_offset": 172,
+            "statistics": {
+              "max": 92408329,
+              "min": 11337164,
+              "null_count": 0,
+              "max_value": 92408329,
+              "min_value": 11337164
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7444,
+          "offset_index_length": 12,
+          "column_index_offset": 6346,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 591,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch38"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 485,
+            "total_compressed_size": 418,
+            "data_page_offset": 591,
+            "statistics": {
+              "max": 92779015,
+              "min": 11297537,
+              "null_count": 0,
+              "max_value": 92779015,
+              "min_value": 11297537
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7456,
+          "offset_index_length": 12,
+          "column_index_offset": 6386,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 1047,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "type"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 74,
+            "total_compressed_size": 78,
+            "data_page_offset": 1047,
+            "dictionary_page_offset": 1009,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "snv",
+              "min_value": "delins"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 303,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7468,
+          "offset_index_length": 15,
+          "column_index_offset": 6426,
+          "column_index_length": 33,
+          "crypto_metadata": 33
+        },
+        {
+          "file_offset": 1124,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "function"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 73,
+            "total_compressed_size": 77,
+            "data_page_offset": 1124,
+            "dictionary_page_offset": 1087,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "missense",
+              "min_value": ""
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 8,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7483,
+          "offset_index_length": 14,
+          "column_index_offset": 6459,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        }
+      ],
+      "total_byte_size": 1278,
+      "num_rows": 100,
+      "file_offset": 4,
+      "total_compressed_size": 1160,
+      "ordinal": 0
+    },
+    {
+      "columns": [
+        {
+          "file_offset": 1164,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 43,
+            "total_compressed_size": 45,
+            "data_page_offset": 1164,
+            "statistics": {
+              "max": 204,
+              "min": 105,
+              "null_count": 0,
+              "max_value": 204,
+              "min_value": 105
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7497,
+          "offset_index_length": 11,
+          "column_index_offset": 6491,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 1209,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "ref_id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 43,
+            "total_compressed_size": 45,
+            "data_page_offset": 1209,
+            "statistics": {
+              "max": 204,
+              "min": 105,
+              "null_count": 0,
+              "max_value": 204,
+              "min_value": 105
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7508,
+          "offset_index_length": 11,
+          "column_index_offset": 6523,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 1285,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "chromosome"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 69,
+            "total_compressed_size": 73,
+            "data_page_offset": 1285,
+            "dictionary_page_offset": 1254,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "7",
+              "min_value": "1"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 100,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7519,
+          "offset_index_length": 15,
+          "column_index_offset": 6555,
+          "column_index_length": 26,
+          "crypto_metadata": 26
+        },
+        {
+          "file_offset": 1327,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch37"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 503,
+            "total_compressed_size": 431,
+            "data_page_offset": 1327,
+            "statistics": {
+              "max": 175261679,
+              "min": 24437960,
+              "null_count": 0,
+              "max_value": 175261679,
+              "min_value": 24437960
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7534,
+          "offset_index_length": 12,
+          "column_index_offset": 6581,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 1758,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch38"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 503,
+            "total_compressed_size": 431,
+            "data_page_offset": 1758,
+            "statistics": {
+              "max": 175292543,
+              "min": 24398341,
+              "null_count": 0,
+              "max_value": 175292543,
+              "min_value": 24398341
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7546,
+          "offset_index_length": 12,
+          "column_index_offset": 6621,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 2241,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "type"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 105,
+            "total_compressed_size": 109,
+            "data_page_offset": 2241,
+            "dictionary_page_offset": 2189,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "snv",
+              "min_value": "del"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 303,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7558,
+          "offset_index_length": 15,
+          "column_index_offset": 6661,
+          "column_index_length": 30,
+          "crypto_metadata": 30
+        },
+        {
+          "file_offset": 2323,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "function"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 58,
+            "total_compressed_size": 62,
+            "data_page_offset": 2323,
+            "dictionary_page_offset": 2298,
+            "statistics": {
+              "max": "",
+              "min": "",
+              "null_count": 0,
+              "max_value": "",
+              "min_value": ""
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 0,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7573,
+          "offset_index_length": 14,
+          "column_index_offset": 6691,
+          "column_index_length": 24,
+          "crypto_metadata": 24
+        }
+      ],
+      "total_byte_size": 1324,
+      "num_rows": 100,
+      "file_offset": 1164,
+      "total_compressed_size": 1196,
+      "ordinal": 1
+    },
+    {
+      "columns": [
+        {
+          "file_offset": 2360,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 43,
+            "total_compressed_size": 45,
+            "data_page_offset": 2360,
+            "statistics": {
+              "max": 304,
+              "min": 205,
+              "null_count": 0,
+              "max_value": 304,
+              "min_value": 205
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7587,
+          "offset_index_length": 11,
+          "column_index_offset": 6715,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 2405,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "ref_id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 43,
+            "total_compressed_size": 45,
+            "data_page_offset": 2405,
+            "statistics": {
+              "max": 304,
+              "min": 205,
+              "null_count": 0,
+              "max_value": 304,
+              "min_value": 205
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7598,
+          "offset_index_length": 11,
+          "column_index_offset": 6747,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 2517,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "chromosome"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 125,
+            "total_compressed_size": 123,
+            "data_page_offset": 2517,
+            "dictionary_page_offset": 2450,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "9",
+              "min_value": "1"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 105,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7609,
+          "offset_index_length": 15,
+          "column_index_offset": 6779,
+          "column_index_length": 26,
+          "crypto_metadata": 26
+        },
+        {
+          "file_offset": 2573,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch37"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 507,
+            "total_compressed_size": 431,
+            "data_page_offset": 2573,
+            "statistics": {
+              "max": 194578311,
+              "min": 5600129,
+              "null_count": 0,
+              "max_value": 194578311,
+              "min_value": 5600129
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7624,
+          "offset_index_length": 12,
+          "column_index_offset": 6805,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 3004,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch38"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 507,
+            "total_compressed_size": 431,
+            "data_page_offset": 3004,
+            "statistics": {
+              "max": 194857582,
+              "min": 5558442,
+              "null_count": 0,
+              "max_value": 194857582,
+              "min_value": 5558442
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7636,
+          "offset_index_length": 12,
+          "column_index_offset": 6845,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 3479,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "type"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 95,
+            "total_compressed_size": 98,
+            "data_page_offset": 3479,
+            "dictionary_page_offset": 3435,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "snv",
+              "min_value": "del"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 315,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7648,
+          "offset_index_length": 15,
+          "column_index_offset": 6885,
+          "column_index_length": 30,
+          "crypto_metadata": 30
+        },
+        {
+          "file_offset": 3584,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "function"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 97,
+            "total_compressed_size": 101,
+            "data_page_offset": 3584,
+            "dictionary_page_offset": 3533,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "synonymous",
+              "min_value": ""
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 44,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7663,
+          "offset_index_length": 14,
+          "column_index_offset": 6915,
+          "column_index_length": 34,
+          "crypto_metadata": 34
+        }
+      ],
+      "total_byte_size": 1417,
+      "num_rows": 100,
+      "file_offset": 2360,
+      "total_compressed_size": 1274,
+      "ordinal": 2
+    },
+    {
+      "columns": [
+        {
+          "file_offset": 3634,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 51,
+            "total_compressed_size": 53,
+            "data_page_offset": 3634,
+            "statistics": {
+              "max": 407,
+              "min": 305,
+              "null_count": 0,
+              "max_value": 407,
+              "min_value": 305
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7677,
+          "offset_index_length": 11,
+          "column_index_offset": 6949,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 3687,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "ref_id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 484,
+            "total_compressed_size": 137,
+            "data_page_offset": 3687,
+            "statistics": {
+              "max": 121909001,
+              "min": 305,
+              "null_count": 0,
+              "max_value": 121909001,
+              "min_value": 305
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7688,
+          "offset_index_length": 12,
+          "column_index_offset": 6981,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 3879,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "chromosome"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 111,
+            "total_compressed_size": 111,
+            "data_page_offset": 3879,
+            "dictionary_page_offset": 3824,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "8",
+              "min_value": "11"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 143,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7700,
+          "offset_index_length": 15,
+          "column_index_offset": 7013,
+          "column_index_length": 27,
+          "crypto_metadata": 27
+        },
+        {
+          "file_offset": 3935,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch37"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 494,
+            "total_compressed_size": 430,
+            "data_page_offset": 3935,
+            "statistics": {
+              "max": 117199647,
+              "min": 5248232,
+              "null_count": 0,
+              "max_value": 117199647,
+              "min_value": 5248232
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7715,
+          "offset_index_length": 12,
+          "column_index_offset": 7040,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 4365,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch38"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 494,
+            "total_compressed_size": 430,
+            "data_page_offset": 4365,
+            "statistics": {
+              "max": 117559593,
+              "min": 5227002,
+              "null_count": 0,
+              "max_value": 117559593,
+              "min_value": 5227002
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7727,
+          "offset_index_length": 12,
+          "column_index_offset": 7080,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 4840,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "type"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 93,
+            "total_compressed_size": 97,
+            "data_page_offset": 4840,
+            "dictionary_page_offset": 4795,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "snv",
+              "min_value": "del"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 309,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7739,
+          "offset_index_length": 15,
+          "column_index_offset": 7120,
+          "column_index_length": 30,
+          "crypto_metadata": 30
+        },
+        {
+          "file_offset": 4989,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "function"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 148,
+            "total_compressed_size": 147,
+            "data_page_offset": 4989,
+            "dictionary_page_offset": 4892,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "synonymous",
+              "min_value": ""
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 55,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7754,
+          "offset_index_length": 14,
+          "column_index_offset": 7150,
+          "column_index_length": 34,
+          "crypto_metadata": 34
+        }
+      ],
+      "total_byte_size": 1875,
+      "num_rows": 100,
+      "file_offset": 3634,
+      "total_compressed_size": 1405,
+      "ordinal": 3
+    },
+    {
+      "columns": [
+        {
+          "file_offset": 5039,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 71,
+            "total_compressed_size": 61,
+            "data_page_offset": 5039,
+            "statistics": {
+              "max": 522,
+              "min": 408,
+              "null_count": 0,
+              "max_value": 522,
+              "min_value": 408
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7768,
+          "offset_index_length": 11,
+          "column_index_offset": 7184,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 5100,
+          "meta_data": {
+            "type": "INT32",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "ref_id"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 71,
+            "total_compressed_size": 61,
+            "data_page_offset": 5100,
+            "statistics": {
+              "max": 522,
+              "min": 408,
+              "null_count": 0,
+              "max_value": 522,
+              "min_value": 408
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7779,
+          "offset_index_length": 11,
+          "column_index_offset": 7216,
+          "column_index_length": 32,
+          "crypto_metadata": 32
+        },
+        {
+          "file_offset": 5204,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "chromosome"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 91,
+            "total_compressed_size": 95,
+            "data_page_offset": 5204,
+            "dictionary_page_offset": 5161,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "8",
+              "min_value": "12"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 103,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7790,
+          "offset_index_length": 15,
+          "column_index_offset": 7248,
+          "column_index_length": 27,
+          "crypto_metadata": 27
+        },
+        {
+          "file_offset": 5256,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch37"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 489,
+            "total_compressed_size": 418,
+            "data_page_offset": 5256,
+            "statistics": {
+              "max": 144429142,
+              "min": 11602163,
+              "null_count": 0,
+              "max_value": 144429142,
+              "min_value": 11602163
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7805,
+          "offset_index_length": 12,
+          "column_index_offset": 7275,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 5674,
+          "meta_data": {
+            "type": "INT64",
+            "encodings": [
+              "DELTA_BINARY_PACKED"
+            ],
+            "path_in_schema": [
+              "position_grch38"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 490,
+            "total_compressed_size": 419,
+            "data_page_offset": 5674,
+            "statistics": {
+              "max": 144732049,
+              "min": 11562536,
+              "null_count": 0,
+              "max_value": 144732049,
+              "min_value": 11562536
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "DELTA_BINARY_PACKED",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7817,
+          "offset_index_length": 12,
+          "column_index_offset": 7315,
+          "column_index_length": 40,
+          "crypto_metadata": 40
+        },
+        {
+          "file_offset": 6145,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "type"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 96,
+            "total_compressed_size": 100,
+            "data_page_offset": 6145,
+            "dictionary_page_offset": 6093,
+            "statistics": {
+              "null_count": 0,
+              "max_value": "snv",
+              "min_value": "del"
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 321,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7829,
+          "offset_index_length": 15,
+          "column_index_offset": 7355,
+          "column_index_length": 30,
+          "crypto_metadata": 30
+        },
+        {
+          "file_offset": 6218,
+          "meta_data": {
+            "type": "BYTE_ARRAY",
+            "encodings": [
+              "PLAIN",
+              "RLE_DICTIONARY"
+            ],
+            "path_in_schema": [
+              "function"
+            ],
+            "codec": "SNAPPY",
+            "num_values": 100,
+            "total_uncompressed_size": 58,
+            "total_compressed_size": 62,
+            "data_page_offset": 6218,
+            "dictionary_page_offset": 6193,
+            "statistics": {
+              "max": "",
+              "min": "",
+              "null_count": 0,
+              "max_value": "",
+              "min_value": ""
+            },
+            "encoding_stats": [
+              {
+                "page_type": "DICTIONARY_PAGE",
+                "encoding": "PLAIN",
+                "count": 1
+              },
+              {
+                "page_type": "DATA_PAGE_V2",
+                "encoding": "RLE_DICTIONARY",
+                "count": 1
+              }
+            ],
+            "size_statistics": {
+              "unencoded_byte_array_data_bytes": 0,
+              "repetition_level_histogram": [
+                100
+              ],
+              "definition_level_histogram": [
+                0,
+                100
+              ]
+            }
+          },
+          "offset_index_offset": 7844,
+          "offset_index_length": 14,
+          "column_index_offset": 7385,
+          "column_index_length": 24,
+          "crypto_metadata": 24
+        }
+      ],
+      "total_byte_size": 1366,
+      "num_rows": 100,
+      "file_offset": 5039,
+      "total_compressed_size": 1216,
+      "ordinal": 4
+    }
+  ],
+  "key_value_metadata": [
+    {
+      "key": "parquet.avro.schema",
+      "value": "{\"type\":\"record\",\"name\":\"dbsnp\",\"fields\":[{\"name\":\"id\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"ref_id\",\"type\":[\"null\",\"int\"],\"default\":null},{\"name\":\"chromosome\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"position_grch37\",\"type\":[\"null\",\"long\"],\"default\":null},{\"name\":\"position_grch38\",\"type\":[\"null\",\"long\"],\"default\":null},{\"name\":\"type\",\"type\":[\"null\",\"string\"],\"default\":null},{\"name\":\"function\",\"type\":[\"null\",\"string\"],\"default\":null}]}"
+    },
+    {
+      "key": "writer.model.name",
+      "value": "avro"
+    }
+  ],
+  "created_by": "parquet-mr version 1.14.0 (build fe9179414906cc19b550d13d2819b4e16fddf8a1)",
+  "metadata_length": 4273
+}
