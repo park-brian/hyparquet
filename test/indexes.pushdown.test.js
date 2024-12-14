@@ -8,8 +8,8 @@ import { concatenateArrayBuffers, groupBy, largeFileToAsyncBuffer } from './help
 
 describe('parquetReadIndices', () => {
   it('retrieves column index data and reads a single page', async () => {
-    // given 'page_indices.parquet' we want to find the first page in the id column that could have values between 250 and 300 (inclusive)
-    // note that this will not fetch the any additional pages that may also fulfill the predicate
+    // given 'page_indexes.parquet' we want to find the first page in the id column that could have values between 250 and 300 (inclusive)
+    // note that this will not fetch additional pages that may also fulfill the predicate
     const file = await asyncBufferFromFile('test/files/page_indexes.parquet')
     const [columnName, minValue, maxValue] = ['id', 250, 300]
     const predicate = (min, max) => +min <= maxValue && minValue <= +max
@@ -157,7 +157,6 @@ describe('parquetReadIndices', () => {
 
     for (let i = 0; i < parsedPages.length; i += columns.length) {
       const rowGroupData = new Array(parsedPages[i].data.length).fill(null).map(() => new Array(columns.length).fill(null))
-      console.log(rowGroupData)
       for (let j = 0; j < columns.length; j++) {
         const columnData = parsedPages[i + j].data
         for (let k = 0; k < columnData.length; k++) {
