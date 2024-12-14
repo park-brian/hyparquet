@@ -6,7 +6,7 @@ import { getSchemaPath } from '../src/schema.js'
 import { asyncBufferFromFile, concat } from '../src/utils.js'
 import { concatenateArrayBuffers, groupBy, largeFileToAsyncBuffer } from './helpers.js'
 
-describe('parquetReadIndices', () => {
+describe('readColumnIndexAndPushdown', () => {
   it('retrieves column index data and reads a single page', async () => {
     // given 'page_indexes.parquet' we want to find the first page in the id column that could have values between 250 and 300 (inclusive)
     // note that this will not fetch additional pages that may also fulfill the predicate
