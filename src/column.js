@@ -27,6 +27,7 @@ export function readColumn(reader, rowLimit, columnMetadata, schemaPath, { compr
     // parse column header
     const header = parquetHeader(reader)
     // assert(header.compressed_page_size !== undefined)
+    if (!header.type) break
 
     // read compressed_page_size bytes starting at offset
     const compressedBytes = new Uint8Array(

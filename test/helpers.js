@@ -77,7 +77,6 @@ export function largeFileToAsyncBuffer(filePath) {
       return new ArrayBuffer(0)
     }
 
-    console.log('Reading range', range)
     const [start, end] = range
     const length = (end || byteLength) - start
     const buffer = new Uint8Array(length)
