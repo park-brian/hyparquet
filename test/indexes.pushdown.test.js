@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { readPage } from '../src/column.js'
+import { readColumn } from '../src/column.js'
 import { parquetMetadataAsync } from '../src/hyparquet.js'
 import { readColumnIndex, readOffsetIndex } from '../src/indexes.js'
 import { getSchemaPath } from '../src/schema.js'
@@ -52,7 +52,8 @@ describe('parquetReadIndices', () => {
     // we used to retrieve page data using readColumn - we set rowLimit to 1 to read only the first page
     // however, since the introduction of rowData.length = rowLimit, we can no longer do this as it will truncate the data
     // so we now use readPage instead (basically just readColumn without a rowLimit and length checks)
-    const pageData = readPage(pageReader, column.meta_data, schemaPath, {})
+    // update: when rowLimit is -1, we read all rows in the column (as before)
+    const pageData = readColumn(pageReader, -1, column.meta_data, schemaPath, {})
 
     // expect the page data to contain values that fulfill the predicate
     const filteredPageData = pageData.filter(x => predicate(x, x))
@@ -144,7 +145,7 @@ describe('parquetReadIndices', () => {
       const pageReader = { view: new DataView(pageArrayBuffer), offset: 0 }
       const column = metadata.row_groups[page.rowGroup].columns[page.column]
       const schemaPath = getSchemaPath(metadata.schema, column.meta_data?.path_in_schema || [])
-      return { page, data: readPage(pageReader, column.meta_data, schemaPath, {}) }
+      return { page, data: readColumn(pageReader, -1, column.meta_data, schemaPath, {}) }
     }).sort((a, b) => a.page.rowGroup - b.page.rowGroup || a.page.page - b.page.page || a.page.column - b.page.column)
 
     /** @type any[][] */
