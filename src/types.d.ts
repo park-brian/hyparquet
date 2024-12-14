@@ -6,6 +6,7 @@ export type Awaitable<T> = T | Promise<T>
 export interface AsyncBuffer {
   byteLength: number
   slice(start: number, end?: number): Awaitable<ArrayBuffer>
+  sliceAll?(ranges: number[][]): Awaitable<ArrayBuffer[]>
 }
 
 export interface DataReader {
