@@ -38,6 +38,73 @@ export function concat(aaa, bbb) {
 }
 
 /**
+ * Concatenate array buffers into a single buffer.
+ *
+ * @param {ArrayBuffer[]} buffers
+ * @returns {ArrayBuffer}
+ */
+export function concatBuffers(...buffers) {
+  const bufferLength = buffers.reduce((acc, buffer) => acc + buffer.byteLength, 0)
+  const buffer = new ArrayBuffer(bufferLength)
+  const array = new Uint8Array(buffer)
+  let offset = 0
+  for (const buffer of buffers) {
+    array.set(new Uint8Array(buffer), offset)
+    offset += buffer.byteLength
+  }
+  return buffer
+}
+
+/**
+ * Calculate the extent of an array.
+ *
+ * @param {any[]} array
+ * @returns {[any, any]}
+ */
+export function extent(array) {
+  let min, max = array[0]
+  for (const value of array) {
+    if (value < min) min = value
+    if (value > max) max = value
+  }
+  return [min, max]
+}
+
+/**
+ * Chunks an array into smaller arrays of the specified size.
+ *
+ * @template T The type of elements in the array
+ * @param {T[]} array
+ * @param {number} chunkSize
+ * @returns {T[][]}
+ */
+export function chunk(array, chunkSize) {
+  const chunks = []
+
+  for (let i = 0; i < array.length; i += chunkSize) {
+    chunks.push(array.slice(i, i + chunkSize))
+  }
+
+  return chunks
+}
+
+/**
+ * Groups an array by a predicate function, returning an object with keys as the predicate result.
+ *
+ * @param {any[]} array
+ * @param {(item: any) => string} predicate
+ * @returns {Record<string, any[]>}
+ */
+export function groupBy(array, predicate) {
+  return array.reduce((acc, el) => {
+    const key = predicate(el)
+    if (!acc[key]) acc[key] = []
+    acc[key].push(el)
+    return acc
+  }, {})
+}
+
+/**
  * Deep equality comparison
  *
  * @param {any} a First object to compare
@@ -69,6 +136,82 @@ export async function byteLengthFromUrl(url, requestInit) {
       if (!length) throw new Error('missing content length')
       return parseInt(length)
     })
+}
+
+/**
+ * Get byte ranges from a URL using a multi-range request.
+ * Uses ASCII encoding for direct byte<->text position mapping.
+ *
+ * @param {string} url - Source URL
+ * @param {(number[]|null)[]} ranges - Array of [start, end] pairs (end is exclusive)
+ * @param {RequestInit} [requestInit] - Fetch API configuration
+ * @param {boolean} [trustContentType=false] - Whether to trust multipart boundary from content-type header
+ * @returns {Promise<ArrayBuffer[]>}
+ */
+export async function byteRangesFromUrl(url, ranges, requestInit = { cache: 'no-store' }, trustContentType = false) {
+  const byteRanges = ranges.map(() => new ArrayBuffer(0))
+  if (!ranges.some(Boolean)) return byteRanges
+
+  const rangeHeader = ranges
+    .filter(Boolean)
+    .map(([start, end]) => `${start}-${end - 1}`)
+    .join(',')
+
+  const response = await fetch(url, {
+    ...requestInit,
+    headers: { ...requestInit.headers, range: `bytes=${rangeHeader}` },
+  })
+
+  if (!response.ok) throw new Error(`fetch failed ${response.status}`)
+
+  const responseBuffer = await response.arrayBuffer()
+  const responseText = new TextDecoder('ascii', { fatal: true }).decode(responseBuffer)
+
+  let boundary = null
+
+  if (trustContentType) {
+    const contentType = response.headers.get('content-type') || ''
+    boundary = contentType.includes('boundary=') ? contentType.split('boundary=')[1].trim() : null
+  } else {
+    const trimmed = responseText.trim()
+    const boundaryMatch = trimmed.match(/^--([^\s]+)$/m)
+    boundary = boundaryMatch?.index === 0 && trimmed.endsWith(`--${boundaryMatch[1]}--`) ? boundaryMatch[1] : null
+  }
+
+  if (!boundary) {
+    ranges.forEach((range, i) => {
+      if (range) byteRanges[i] = responseBuffer.slice(...range)
+    })
+    return byteRanges
+  }
+
+  const parts = responseText
+    .split(`--${boundary}`)
+    .filter((part) => part.trim() && !part.includes('--\r\n'))
+    .map((part) => part.split('\r\n\r\n').map((p) => p.replace(/\r\n$/, '')))
+
+  let position = 0
+  for (const [headers, content] of parts) {
+    const [, startStr, endStr] = headers.match(/content-range:.*bytes (\d+)-(\d+)/i) || []
+    if (!startStr) continue
+    const start = +startStr
+    const end = +endStr + 1
+
+    const contentOffset = responseText.indexOf(content, position + headers.length)
+    const partBuffer = responseBuffer.slice(contentOffset, contentOffset + content.length)
+    position = contentOffset + content.length
+
+    ranges.forEach((range, i) => {
+      if (!range) return
+      if (start <= range[0] && range[1] <= end) {
+        const offset = range[0] - start
+        const length = range[1] - range[0]
+        byteRanges[i] = partBuffer.slice(offset, offset + length)
+      }
+    })
+  }
+
+  return byteRanges
 }
 
 /**
