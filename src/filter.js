@@ -67,10 +67,10 @@ export function matchFilter(record, filter, strict = true) {
     }
 
     return Object.entries(condition || {}).every(([operator, target]) => {
-      if (operator === '$gt') return value > target
-      if (operator === '$gte') return value >= target
-      if (operator === '$lt') return value < target
-      if (operator === '$lte') return value <= target
+      if (operator === '$gt') return value !== null && value !== undefined && value > target
+      if (operator === '$gte') return value !== null && value !== undefined && value >= target
+      if (operator === '$lt') return value !== null && value !== undefined && value < target
+      if (operator === '$lte') return value !== null && value !== undefined && value <= target
       if (operator === '$eq') return equals(value, target, strict)
       if (operator === '$ne') return !equals(value, target, strict)
       if (operator === '$in') return Array.isArray(target) && matchesIn(value, target, strict)

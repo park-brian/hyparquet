@@ -36,6 +36,17 @@ describe('matchFilter', () => {
     expect(matchFilter(record, { x: { $eq: new Date('2024-01-02T00:00:00Z') } })).toBe(false)
   })
 
+  it('never matches null values against range comparisons', () => {
+    // MongoDB type bracketing: null never satisfies $lt/$lte/$gt/$gte.
+    // Raw JS comparison coerces null to 0, so these wrongly match.
+    const record = { x: null }
+    expect(matchFilter(record, { x: { $lt: 7 } })).toBe(false)
+    expect(matchFilter(record, { x: { $lte: 7 } })).toBe(false)
+    expect(matchFilter(record, { x: { $gt: -1 } })).toBe(false)
+    expect(matchFilter(record, { x: { $gte: 0 } })).toBe(false)
+    expect(matchFilter(record, { x: { $lte: new Date('2024-01-01') } })).toBe(false)
+  })
+
   it('handles $in, $nin, and $not operators', () => {
     const record = { x: 5 }
     expect(matchFilter(record, { x: { $in: [1, 5, 10] } })).toBe(true)
