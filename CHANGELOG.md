@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.28.2]
+ - Never match null values against range filters
+
 ## [1.28.1]
  - Fix $nin filters when comparing Date values
 
