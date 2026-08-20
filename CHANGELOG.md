@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.29.0]
+ - Add parquetScan for lazy physical column scans (#172)
+
 ## [1.28.2]
  - Never match null values against range filters
 
