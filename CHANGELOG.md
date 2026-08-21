@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.29.1]
+ - Defer parquetScan column planning until a column is read
+
 ## [1.29.0]
  - Add parquetScan for lazy physical column scans (#172)
 
