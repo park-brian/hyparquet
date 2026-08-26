@@ -1,5 +1,8 @@
 # Changelog
 
+## [1.29.2]
+ - Add default exports to package.json for compatibility with CJS resolvers (#174)
+
 ## [1.29.1]
  - Defer parquetScan column planning until a column is read
 
